@@ -143,7 +143,7 @@ const [{user }, dispatch] = useStateValue();
             />
             <span className="showHide">
               {/* <Icon icon={icon} size={20} onClick={HandleIconChange} /> */}
-            </span>
+            </span><br/>
             <button className="btnSign">Agree and Join</button>
           </form>
           <p className="mt-md-5 mt-sm-5 text-center texttag">
