@@ -71,11 +71,9 @@ const userController = {
               userService.register(req.body, (err, results) => {
                 if (err) {
                   console.log(err);
-                  return res
-                    .status(500)
-                    .json({
-                      msg: "database connection err during inserting to registration table",
-                    });
+                  return res.status(500).json({
+                    msg: "database connection err during inserting to registration table",
+                  });
                 }
                 req.body.userId = results.insertId;
                 userService.profile(req.body, (err, results) => {
@@ -189,13 +187,21 @@ const userController = {
     );
   },
 
+  // confimCode: (req, res) => {
+  //   const { v_code } = req.body;
+  //   if (v_code == verify_data.v_code) {
+  //     res.send({ state: "success", msg: `confimed` });
+  //   }
+
+  //   res.status(400).json({ msg: "incorrect v_code" });
+  // },
   confimCode: (req, res) => {
     const { v_code } = req.body;
-    if (v_code == verify_data.v_code) {
+    if (verify_data && v_code == verify_data.v_code) {
       res.send({ state: "success", msg: `confimed` });
+    } else {
+      res.status(400).json({ msg: "incorrect v_code" });
     }
-
-    res.status(400).json({ msg: "incorrect v_code" });
   },
 
   changePassword: (req, res) => {
